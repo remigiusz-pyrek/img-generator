@@ -56,7 +56,7 @@ class Image
 		$content = "";
 		$content .= HTML::renderArticleSection(ImageView::imageForm($this->_data));
 		if (isset($_REQUEST['generate'])) $content .= HTML::renderArticleSection(ImageView::imageResult(ImageView::generateHTMLimageItem($this->_data)));
-		print HTML::renderHTML5Page($content, 'Generator elementu graficznego IMG', 'Generator znacznika IMG - Remigiusz Pyrek');
+		print HTML::renderHTML5Page($content, 'Generator elementu graficznego &lt;img&gt;', 'Generator znacznika &lt;img&gt; - Remigiusz Pyrek');
 	}
 	
 	private function _getEnvData()
