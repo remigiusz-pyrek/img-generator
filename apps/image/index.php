@@ -46,7 +46,7 @@ class Image
 	public function __construct()
 	{
 		$this->_getEnvData();
-		$this->_getImageData($this->_data);
+		$this->_getImageData();
 		$this->_generateImageData();
 		$this->main();
 	}
@@ -83,7 +83,7 @@ class Image
 		$this->_data['img_alt'] = $this->_generateImgAlt($this->_data['image_no']);
 	}
 	
-	private function _getImageData($data)
+	private function _getImageData()
 	{
 		$file = function ($path) {
 			$data = pathinfo($path);
@@ -93,7 +93,7 @@ class Image
 			in_array($data['extension'], self::$_file_types) ? $file['ext'] = $data['extension'] : $file['ext'] = self::$_file_types[1];
 			return $file;
 		};
-		$this->_data = $this->_data + $file($data['image_img_src']);
+		$this->_data = $this->_data + $file($this->_data['image_img_src']);
 	}
 	
 	private function _generateImgSrcName()
