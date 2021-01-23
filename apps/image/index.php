@@ -32,8 +32,8 @@ class Image
 	];
 	
 	private $_data = [
-		'company_name' => 'Projekt Edukacja',
-		'article_title' => 'Zajęcia informatyczne',
+		'company_name' => 'Remigiusz Pyrek',
+		'article_title' => 'Praktycznie o informatyce',
 		"schema" => 2,
 		"guide" => 1,
 		"hidpi" => 1,
