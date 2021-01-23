@@ -10,26 +10,26 @@ require_once ('view.php');
 class Image
 {
 	private $cookie_time = 60 * 60 * 24 * 365;
-	public static $_file_types = array(
+	public static $_file_types = [
 		1 => "gif",
 		"jpg",
 		"png"
-	);
-	public static $_hidpi_states = array(
+	];
+	public static $_hidpi_states = [
 		1 => "Nie",
 		"Tak"
-	);
-	public static $_schema_states = array(
+	];
+	public static $_schema_states = [
 		1 => "Nie",
 		"Tak"
-	);
-	public static $_image_type = array(
+	];
+	public static $_image_type = [
 		1 => "Artykuł",
 		"Sekcja",
 		"Intro",
 		"Produkt",
 		"Film",
-	);
+	];
 	
 	private $_data = [
 		'company_name' => 'Projekt Edukacja',
