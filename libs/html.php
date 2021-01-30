@@ -2,8 +2,8 @@
 
 class HTML
 {
-
-	static public function renderHTML5Page($content, $header, $title = 'Generator elementu graficznego IMG - Remigiusz Pyrek', $subheader = 'Pozycjonowanie organiczne SEO')
+	
+	static public function renderHTML5Page($content, $header, $title = 'Generator kodu galerii zdjęć Lightbox - Projekt Edukacja', $subheader = 'Pozycjonowanie organiczne SEO', $meta = '')
 	{
 		$html = "";
 		$html .= "<!doctype html>\n";
@@ -13,6 +13,7 @@ class HTML
 		$html .= "<title>" . $title . "</title>\n";
 		$html .= "<link rel=\"stylesheet\" href=\"/css/style.css\" media=\"all\">\n";
 		$html .= self::googleAnalytics();
+		$html .= $meta;
 		$html .= "</head>\n";
 		$html .= "<body>\n";
 		$html .= "	<header>\n";
@@ -28,17 +29,17 @@ class HTML
 		$html .= $content;
 		$html .= "		</article>\n";
 		$html .= "		<!-- End of custom -->\n";
-// 		$html .= "		<nav class=\"pt3em\">\n";
-// 		$html .= "			<p>\n";
-// 		$html .= "				<a href=\"/\"><small>&laquo; Powrót do listy</small></a>\n";
-// 		$html .= "			</p>\n";
-// 		$html .= "		</nav>\n";
+		$html .= "		<nav class=\"pt3em\">\n";
+		$html .= "			<p>\n";
+		$html .= "				<a href=\"/\"><small>&laquo; Powrót do listy</small></a>\n";
+		$html .= "			</p>\n";
+		$html .= "		</nav>\n";
 		$html .= "	</div>\n";
 		$html .= "	</main>\n";
 		$html .= "	<footer>\n";
 		$html .= "		<div class=\"wrapper\">\n";
 		$html .= "			<p>\n";
-		$html .= "				<a href=\"/\"><small>&copy; 2016 - " . date('Y') . " Remigiusz Pyrek</small></a>\n";
+		$html .= "				<a href=\"/\"><small>&copy; 2016 - " . date('Y') . " Projekt Edukacja</small></a>\n";
 		$html .= "			</p>\n";
 		$html .= "		</div>\n";
 		$html .= "	</footer>\n";
@@ -56,7 +57,7 @@ class HTML
 		$html .= "</html>";
 		return $html;
 	}
-
+	
 	static public function renderArticleSection($content, $class = false)
 	{
 		$html = "";
@@ -67,7 +68,7 @@ class HTML
 		$html .= "			</section>\n";
 		return $html;
 	}
-
+	
 	static public function renderForm($content, $submit = true, $submit_value = "OK")
 	{
 		$html = "";
@@ -81,7 +82,7 @@ class HTML
 		$html .= "</form>";
 		return $html;
 	}
-
+	
 	static public function renderFieldset($content, $caption)
 	{
 		$html = "";
@@ -91,7 +92,7 @@ class HTML
 		$html .= "</fieldset>";
 		return $html;
 	}
-
+	
 	static public function renderSelectList($name, $options, $selected = 0, $on_change = true)
 	{
 		$html = "";
@@ -106,7 +107,7 @@ class HTML
 		$html .= "</select>";
 		return $html;
 	}
-
+	
 	static public function renderInput($type, $name, $value, $min = false, $max = false, $step = false)
 	{
 		$html = "";
@@ -119,7 +120,24 @@ class HTML
 		if ($step) $html .= "step=\"" . $step . "\" ";
 		return $html;
 	}
-
+	
+	static public function renderOpenGraph($site_name, $url, $title, $desc, $image, $image_alt)
+	{
+		$html = "";
+		$html .= "<!-- Open Graph Support -->\n";
+		$html .= "<meta property=\"og:type\" content=\"article\"/>\n";
+		$html .= "<meta property=\"og:url\" content=\"" . $_SERVER['HTTP_ORIGIN'] . $url . "\"/>\n";
+		$html .= "<meta property=\"og:site_name\" content=\"" . $site_name . "\"/>\n";
+		$html .= "<meta property=\"fb:admins\" content=\"100000616669366\"/>\n";
+		$html .= "<meta property=\"fb:app_id\" content=\"826288077934194\"/>\n";
+		$html .= "<meta property=\"og:title\" content=\"" . $title . "\"/>\n";
+		$html .= "<meta property=\"og:description\" content=\"" . $desc . "\"/>\n";
+		$html .= "<meta property=\"og:image\" content=\"" . $_SERVER['HTTP_ORIGIN'] . $image . "\"/>\n";
+		$html .= "<meta property=\"og:image:alt\" content=\"" . $image_alt . "”\"/>\n";
+		$html .= "<!-- Ends Open Graph Support -->";
+		return $html;
+	}
+	
 	static public function googleAnalytics($gtag="G-4EEZQJ2WNJ")
 	{
 		$html = "";

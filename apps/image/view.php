@@ -2,7 +2,7 @@
 
 class ImageView
 {
-
+	
 	static public function imageForm($data = array())
 	{
 		$html = "";
@@ -49,7 +49,7 @@ class ImageView
 		
 		return $html;
 	}
-
+	
 	static public function imageResult($content)
 	{
 		$html = "";
@@ -63,7 +63,7 @@ class ImageView
 		
 		return $html;
 	}
-
+	
 	static public function imageDescription($data = array())
 	{
 		$html = "";
@@ -84,7 +84,7 @@ class ImageView
 		$html .= "</fieldset>";
 		return $html;
 	}
-
+	
 	static public function imageOption($data = array(), $selected)
 	{
 		$html = "";
@@ -97,7 +97,7 @@ class ImageView
 		
 		return $html;
 	}
-
+	
 	public static function generateHTMLimageItem($data = false)
 	{
 		$html = "";

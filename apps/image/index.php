@@ -32,9 +32,8 @@ class Image
 		"Sekcja",
 		"Intro",
 		"Produkt",
-		"Film",
+		"Film"
 	];
-	
 	private $_data = [
 		'company_name' => 'Remigiusz Pyrek',
 		'article_title' => 'Praktycznie o informatyce',
@@ -46,7 +45,20 @@ class Image
 		'image_no' => 1,
 		'image_dest' => 1
 	];
-	
+	private $_open_graph = [
+		'site_name' => 'Remigiusz Pyrek',
+		'url' => '/apps/image/',
+		'title' => 'Prosty i darmowy generator kodu IMG',
+		'desc' => 'Generator kodu IMG – narzędzie, które stworzyłem, aby zautomatyzować niektóre elementy w mojej pracy administratora. Pozycjonowanie dzięki opisywaniu grafiki pozwala osiągnąć lepsze wyniki. Skorzystaj za darmo!',
+		'image' => '/apps/image/img/remigiusz-pyrek-og-img-generator.jpg',
+		'image_alt' => 'Zdjęcie do posta „Generator kodu IMG'
+	];
+	private $_page = [
+		'title' => 'Generator znacznika &lt;img&gt; - Remigiusz Pyrek',
+		'header' => 'Generator elementu graficznego &lt;img&gt;',
+		'sub_header' => 'Pozycjonowanie organiczne SEO'
+	];
+
 	public function __construct()
 	{
 		$this->_getEnvData();
@@ -54,15 +66,16 @@ class Image
 		$this->_generateImageData();
 		$this->main();
 	}
-	
+
 	public function main()
 	{
 		$content = "";
 		$content .= HTML::renderArticleSection(ImageView::imageForm($this->_data));
+		$meta = HTML::renderOpenGraph($this->_open_graph['site_name'], $this->_open_graph['url'], $this->_open_graph['title'], $this->_open_graph['desc'], $this->_open_graph['image'], $this->_open_graph['image_alt']);
 		if (isset($_REQUEST['generate'])) $content .= HTML::renderArticleSection(ImageView::imageResult(ImageView::generateHTMLimageItem($this->_data)));
-		print HTML::renderHTML5Page($content, 'Generator elementu graficznego &lt;img&gt;', 'Generator znacznika &lt;img&gt; - Remigiusz Pyrek');
+		print HTML::renderHTML5Page($content, $this->_page['header'], $this->_page['title'], $this->_page['sub_header'], $meta);
 	}
-	
+
 	private function _getEnvData()
 	{
 		foreach ($this->_data as $key => $value) {
@@ -76,7 +89,7 @@ class Image
 			}
 		}
 	}
-	
+
 	private function _generateImageData()
 	{
 		$this->_data['img_src_name'] = $this->_generateImgSrcName();
@@ -86,7 +99,7 @@ class Image
 		$this->_data['img_title'] = $this->_generateImgTitle($this->_data['image_no']);
 		$this->_data['img_alt'] = $this->_generateImgAlt($this->_data['image_no']);
 	}
-	
+
 	private function _getImageData()
 	{
 		$file = function ($path) {
@@ -99,50 +112,51 @@ class Image
 		};
 		$this->_data = $this->_data + $file($this->_data['image_img_src']);
 	}
-	
+
 	private function _generateImgSrcName()
 	{
 		$html = "";
 		$html .= $this->_data['file_name'] . "." . $this->_data['ext'];
 		return $html;
 	}
-	
+
 	private function _generateImgSrc()
 	{
 		$html = "";
 		$html .= $this->_data['dir'] . DS . $this->_data['file_name'] . "." . $this->_data['ext'];
 		return $html;
 	}
-	
+
 	private function _generateImgSrcset()
 	{
 		$html = "";
 		$html .= $this->_data['dir'] . DS . $this->_data['file_name'] . "-2x." . $this->_data['ext'];
 		return $html;
 	}
-	
+
 	private function _generateImgSrcsetName()
 	{
 		$html = "";
 		$html .= $this->_data['file_name'] . "-2x." . $this->_data['ext'];
 		return $html;
 	}
-	
+
 	private function _generateImgTitle()
 	{
 		$html = $this->_data['article_title'] . " - " . $this->_data['company_name'];
-		// 		$html = $this->_data['article_title'] . " - " . $this->_data['company_name'] . " - %s. zdjęcie";
+		// $html = $this->_data['article_title'] . " - " . $this->_data['company_name'] . " - %s. zdjęcie";
 		return sprintf($html, $this->_data['image_no']);
 	}
-	
+
 	private function _generateImgAlt()
 	{
-		$html = "Zdjęcie do ".$this->_imageDestinationName($this->_data['image_dest'])." „" . $this->_data['article_title'] . "” - " . $this->_data['company_name'] . "";
+		$html = "Zdjęcie do " . $this->_imageDestinationName($this->_data['image_dest']) . " „" . $this->_data['article_title'] . "” - " . $this->_data['company_name'] . "";
 		return $html;
 	}
-	
-	private function _imageDestinationName($type=1) {
-		switch($type) {
+
+	private function _imageDestinationName($type = 1)
+	{
+		switch ($type) {
 			case 2:
 				$name = "sekcji";
 				break;
