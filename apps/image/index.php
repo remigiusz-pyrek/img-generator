@@ -1,4 +1,8 @@
 <?php
+/**
+ * @desc    Generator kodu dla znaczanika <img>
+ * @author  Remigiusz Pyrek
+ */
 ini_set('display_errors', 0);
 define('DS', DIRECTORY_SEPARATOR);
 define('LIBS', realpath(dirname(__FILE__)) . DS . ".." . DS . ".." . DS . "libs" . DS);

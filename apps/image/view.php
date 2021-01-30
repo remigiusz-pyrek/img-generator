@@ -6,7 +6,7 @@ class ImageView
 	static public function imageForm($data = array())
 	{
 		$html = "";
-		$html .= "<form class=\"block\">";
+		$html .= "<form method=\"post\" class=\"block\">";
 		
 		$html .= "  <fieldset>\n";
 		$html .= "    <legend>Parametry kodu wynikowego</legend>\n";
