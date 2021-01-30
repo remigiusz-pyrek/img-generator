@@ -2,7 +2,7 @@
 
 class ImageView
 {
-	
+
 	static public function imageForm($data = array())
 	{
 		$html = "";
@@ -39,7 +39,7 @@ class ImageView
 		$html .= "    <label for=\"path\">Ścieżka do pliku</label><input class=\"full\" name=\"form_data[image_img_src]\" value=\"" . $data['image_img_src'] . "\" id=\"path\" /><br />\n";
 		$html .= "  </fieldset>\n";
 		
-		if($data['guide']==2) $html .= self::imageDescription($data);
+		if ($data['guide'] == 2) $html .= self::imageDescription($data);
 		
 		$html .= "  <div class=\"center\">\n";
 		$html .= "    <input name=\"form_data[prefix]\" value=\"" . $data['prefix'] . "\" type=\"hidden\" />\n";
@@ -49,7 +49,7 @@ class ImageView
 		
 		return $html;
 	}
-	
+
 	static public function imageResult($content)
 	{
 		$html = "";
@@ -63,7 +63,7 @@ class ImageView
 		
 		return $html;
 	}
-	
+
 	static public function imageDescription($data = array())
 	{
 		$html = "";
@@ -72,8 +72,8 @@ class ImageView
 		$html .= "<ol>\n";
 		$html .= "  <li>Przygotuj odpowiednie zdjęcia w programie graficznym"; // </li>\n";
 		$html .= "    <ul>\n";
-		$html .= "      <li><b>" . $data['img_src_name'] ."</b> - jako zdjecie podstawowe</li>\n";
-		if($data['hidpi']==2) $html .= "      <li><b>" . $data['img_srcset_name'] ."</b> - jako zdjecie HiDPI</li>\n";
+		$html .= "      <li><b>" . $data['img_src_name'] . "</b> - jako zdjecie podstawowe</li>\n";
+		if ($data['hidpi'] == 2) $html .= "      <li><b>" . $data['img_srcset_name'] . "</b> - jako zdjecie HiDPI</li>\n";
 		$html .= "    </ul>\n";
 		$html .= "  </li>\n";
 		$html .= "  <li>Prześlij pliki na serwer</li>\n";
@@ -84,35 +84,32 @@ class ImageView
 		$html .= "</fieldset>";
 		return $html;
 	}
-	
+
 	static public function imageOption($data = array(), $selected)
 	{
 		$html = "";
 		foreach ($data as $key => $val) {
 			$html .= "      <option ";
 			$html .= "value=\"" . $key . "\"";
-			if ($selected == $key)
-				$html .= "selected";
-				$html .= ">" . $val . "</option>\n";
+			if ($selected == $key) $html .= "selected";
+			$html .= ">" . $val . "</option>\n";
 		}
 		
 		return $html;
 	}
-	
+
 	public static function generateHTMLimageItem($data = false)
 	{
 		$html = "";
 		$html .= "<img src=\"" . $data['img_src'] . "\" ";
-		if ($data['hidpi'] == 2)
-			$html .= "srcset=\"" . $data['img_srcset'] . " 2x\" ";
-			$html .= "alt=\"" . $data['img_alt'] . "\" ";
-			$html .= "title=\"" . $data['img_title'] . "\" ";
-			if ($data['schema'] == 2)
-				$html .= "itemprop=\"image\" ";
-				$html .= "/>";
-				$html .= "\n";
-				
-				return $html;
+		if ($data['hidpi'] == 2) $html .= "srcset=\"" . $data['img_srcset'] . " 2x\" ";
+		$html .= "alt=\"" . $data['img_alt'] . "\" ";
+		$html .= "title=\"" . $data['img_title'] . "\" ";
+		if ($data['schema'] == 2) $html .= "itemprop=\"image\" ";
+		$html .= "/>";
+		$html .= "\n";
+		
+		return $html;
 	}
 }
 ?>
