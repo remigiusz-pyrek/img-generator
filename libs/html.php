@@ -138,11 +138,11 @@ class HTML
 		return $html;
 	}
 	
-	static public function googleAnalytics($gtag="G-4EEZQJ2WNJ")
+	static public function googleAnalytics($gtag="UA-4014987-19")
 	{
 		$html = "";
 		$html .= "<!-- Global site tag (gtag.js) - Google Analytics -->\n";
-		$html .= "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-4EEZQJ2WNJ\"></script>\n";
+		$html .= "<script async src=\"https://www.googletagmanager.com/gtag/js?id=".$gtag."\"></script>\n";
 		$html .= "<script>\n";
 		$html .= "  window.dataLayer = window.dataLayer || [];\n";
 		$html .= "  function gtag(){dataLayer.push(arguments);}\n";
